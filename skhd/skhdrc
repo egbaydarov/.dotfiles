@@ -1,0 +1,69 @@
+# -- Changing Window Focus --
+
+# change window focus within space
+cmd + ctrl + alt - j : yabai -m window --focus south
+cmd + ctrl + alt - k : yabai -m window --focus north
+cmd + ctrl + alt - h : yabai -m window --focus west
+cmd + ctrl + alt - l : yabai -m window --focus east
+
+#change focus between external displays (left and right)
+cmd + ctrl + alt - 0x29 : yabai -m display --focus west
+cmd + ctrl + alt - 0x27 : yabai -m display --focus east
+
+# -- Modifying the Layout --
+
+# rotate layout clockwise
+cmd + ctrl + alt + shift - r : yabai -m space --rotate 270
+# flip along y-axis
+cmd + ctrl + alt + shift - y : yabai -m space --mirror y-axis
+# flip along x-axis
+cmd + ctrl + alt + shift - u : yabai -m space --mirror x-axis
+
+# toggle window float
+cmd + ctrl + alt + shift - tab : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+
+# -- Modifying Window Size --
+# maximize a window
+cmd + ctrl + alt - m : yabai -m window --toggle zoom-fullscreen
+
+# resize from sides
+cmd + ctrl + alt - y : yabai -m window --resize right:-2:0
+cmd + ctrl + alt - u : yabai -m window --resize bottom:0:2
+cmd + ctrl + alt - i : yabai -m window --resize bottom:0:-2
+cmd + ctrl + alt - o : yabai -m window --resize right:2:0
+
+# -- Moving Windows Around --
+
+# swap windows
+cmd + ctrl + alt + shift - j : yabai -m window --swap south
+cmd + ctrl + alt + shift - k : yabai -m window --swap north
+cmd + ctrl + alt + shift - h : yabai -m window --swap west
+cmd + ctrl + alt + shift - l : yabai -m window --swap east
+
+# move window to display left and right
+cmd + ctrl + alt + shift - 0x29 : yabai -m window --display west; yabai -m display --focus west;
+cmd + ctrl + alt + shift - 0x27 : yabai -m window --display east; yabai -m display --focus east;
+
+# move window to space #
+cmd + ctrl + alt + shift - 1 : yabai -m window --space 1;
+cmd + ctrl + alt + shift - 2 : yabai -m window --space 2;
+cmd + ctrl + alt + shift - 3 : yabai -m window --space 3;
+cmd + ctrl + alt + shift - 4 : yabai -m window --space 4;
+cmd + ctrl + alt + shift - 5 : yabai -m window --space 5;
+cmd + ctrl + alt + shift - 6 : yabai -m window --space 6;
+cmd + ctrl + alt + shift - 7 : yabai -m window --space 7;
+cmd + ctrl + alt + shift - 8 : yabai -m window --space 8;
+cmd + ctrl + alt + shift - 9 : yabai -m window --space 9;
+cmd + ctrl + alt + shift - 0 : yabai -m window --space 10;
+
+# -- Starting/Stopping/Restarting Yabai --
+
+# stop/start/restart yabai
+cmd + ctrl + alt + shift - backspace : yabai --stop-service
+cmd + ctrl + alt + shift - return : yabai --start-service
+
+
+# exclude focused window from managing
+
+cmd + ctrl + alt + shift - delete : yabai -m query --windows | jq -r '.[] | select(.["has-focus"] == true) | "yabai -m rule --add title=\"" + .title + "\" app=\"" + .app + "\" manage=off"' >> ~/.config/yabai/yabairc
