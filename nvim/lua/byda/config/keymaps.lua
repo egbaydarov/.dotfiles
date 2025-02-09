@@ -1,5 +1,17 @@
 local map = vim.keymap.set
+
 map("n", "<leader>pv", vim.cmd.Ex)
+map("n", "<leader>rr", vim.lsp.buf.rename)
+-- map("n", "<leader>td", vim.lsp.buf.type_definiton)
+map("n", "<leader>lsh", vim.lsp.buf.signature_help)
+map("n", "<leader>lth", vim.lsp.buf.typehierarchy)
+-- map("n", "<leader>tt", vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()))
+map("n", "<leader>hh", vim.lsp.buf.hover)
+map("n", "<leader>li", vim.lsp.buf.implementation)
+map("n", "<leader>lr", vim.lsp.buf.references)
+map("n", "<leader>ld", vim.lsp.buf.definition)
+map("n", "<leader>ldl", vim.lsp.buf.declaration)
+map("n", "<leader>lcoa", vim.lsp.buf.code_action)
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
