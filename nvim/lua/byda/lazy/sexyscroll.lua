@@ -1,3 +1,3 @@
 return {
-    'psliwka/vim-smoothie'
+    'psliwka/vim-smoothie',
 }

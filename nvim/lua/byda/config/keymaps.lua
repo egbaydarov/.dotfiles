@@ -1,17 +1,22 @@
 local map = vim.keymap.set
 
 map("n", "<leader>pv", vim.cmd.Ex)
-map("n", "<leader>rr", vim.lsp.buf.rename)
--- map("n", "<leader>td", vim.lsp.buf.type_definiton)
-map("n", "<leader>lsh", vim.lsp.buf.signature_help)
-map("n", "<leader>lth", vim.lsp.buf.typehierarchy)
--- map("n", "<leader>tt", vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()))
-map("n", "<leader>hh", vim.lsp.buf.hover)
-map("n", "<leader>li", vim.lsp.buf.implementation)
-map("n", "<leader>lr", vim.lsp.buf.references)
-map("n", "<leader>ld", vim.lsp.buf.definition)
-map("n", "<leader>ldl", vim.lsp.buf.declaration)
-map("n", "<leader>lcoa", vim.lsp.buf.code_action)
+
+map("n", "<leader>gd", vim.lsp.buf.definition)               -- Go to definition
+map("n", "<leader>gr", vim.lsp.buf.references)               -- Find references
+map("n", "<leader>gi", vim.lsp.buf.implementation)           -- Go to implementation
+map("n", "<leader>gD", vim.lsp.buf.declaration)              -- Go to declaration
+map("n", "<leader>K", vim.lsp.buf.hover)                     -- Show hover documentation
+map("n", "<leader>rn", vim.lsp.buf.rename)                   -- Rename symbol
+map("n", "<leader>ca", vim.lsp.buf.code_action)              -- Show code actions
+map("n", "<leader>f", vim.lsp.buf.formatting)                -- Format document
+map("n", "<leader>td", vim.lsp.buf.type_definition)          -- Go to type definition
+map("n", "<leader>sh", vim.lsp.buf.signature_help)           -- Show signature help
+map("n", "<leader>lh", vim.lsp.buf.typehierarchy)            -- Show type hierarchy
+map("n", "<leader>gl", vim.lsp.diagnostic.show_line_diagnostics)  -- Show line diagnostics
+map("n", "[d", vim.lsp.diagnostic.goto_prev)                 -- Go to previous diagnostic
+map("n", "]d", vim.lsp.diagnostic.goto_next)                 -- Go to next diagnostic
+map("n", "<leader>q", vim.lsp.diagnostic.set_loclist)         -- Set diagnostics in quickfix list
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })

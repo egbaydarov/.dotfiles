@@ -20,7 +20,13 @@ opt.fillchars = {
   diff = "╱",
   eob = " ",
 }
-opt.foldlevel = 99
+vim.opt.listchars = {
+  tab = "▏ ",      -- Single character for tab with trailing space
+  trail = "·",     -- Trailing space symbol
+  extends = ">",   -- Indicates line continuation
+  precedes = "<",  -- Indicates line continuation
+  space = " "      -- Visible space character
+}
 opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
