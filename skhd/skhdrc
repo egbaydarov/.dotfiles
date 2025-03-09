@@ -60,10 +60,12 @@ cmd + ctrl + alt + shift - 0 : yabai -m window --space 10;
 # -- Starting/Stopping/Restarting Yabai --
 
 # stop/start/restart yabai
-cmd + ctrl + alt + shift - backspace : yabai --stop-service
-cmd + ctrl + alt + shift - return : yabai --start-service
+cmd + ctrl + alt + shift - backspace : yabai --stop-service;
+cmd + ctrl + alt + shift - return : yabai --start-service;
+
+# wezterm
+cmd + ctrl + alt - t : nohup ~/wezterm/WezTerm.app/Contents/MacOS/wezterm start &;
 
 
 # exclude focused window from managing
-
 cmd + ctrl + alt + shift - delete : yabai -m query --windows | jq -r '.[] | select(.["has-focus"] == true) | "yabai -m rule --add title=\"" + .title + "\" app=\"" + .app + "\" manage=off"' >> ~/.config/yabai/yabairc

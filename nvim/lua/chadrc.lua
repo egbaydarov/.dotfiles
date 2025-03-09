@@ -22,8 +22,7 @@ local options = {
       },
     },
 
-    telescope = { style = "borderless" }, -- borderless / bordered
-
+    telescope = {}, -- borderless / bordered
     statusline = {
       lazy = false,
       enabled = true,
@@ -34,7 +33,6 @@ local options = {
       order = nil,
       modules = nil,
     },
-
     tabufline = {
       enabled = false,
     },
