@@ -93,6 +93,11 @@ config.keys = {
     action = act.SwitchToWorkspace {
       name = 'f4',
     },
+
+    key = 'F5',
+    action = act.SwitchToWorkspace {
+      name = 'f5',
+    },
   },
 }
 
@@ -147,9 +152,13 @@ wezterm.on('gui-startup',
       workspace = 'f4',
       cwd = home_dir .. '/.config',
     }
-    -- pane:send_text("docker container ls" .. "\n")
 
-    -- We want to startup in the coding workspace
+    local tab, pane, window = mux.spawn_window {
+      workspace = 'f5',
+      cwd = '/etc/nixos',
+      args = { "sudo", "-E", "nvim", "." }
+    }
+
     mux.set_active_workspace 'f1'
   end
 )

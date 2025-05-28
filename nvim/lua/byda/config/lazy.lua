@@ -23,7 +23,6 @@ require("lazy").setup(
     spec = {
       {
         "nvim-lua/plenary.nvim",
-        lazy = false,
       },
       {
         "nvchad/base46",
