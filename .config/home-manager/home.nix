@@ -1,12 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "byda";
   home.homeDirectory = "/home/byda";
+  home.stateVersion = "25.05"; # Please read the comment before changing.
+  programs.home-manager.enable = true;
 
-  # TBA
   nixpkgs.overlays =
     let
       # Change this to a rev sha to pin
@@ -19,17 +18,19 @@
   programs.firefox.enable = true;
   programs.firefox.package = pkgs.latest.firefox-nightly-bin;
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
+  systemd.user.services.twitchalarm = {
+    Unit = {
+      Description = "Twitch Notifier";
+      After = [ "network.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.callPackage ./twitchalarm.nix { }}/bin/twitch-notifs";
+      Restart = "always";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -46,6 +47,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    (import ./twitchalarm.nix { inherit pkgs; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -82,7 +84,4 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
