@@ -1,6 +1,7 @@
 *
-
 !.gitignore
+
+
 !.local/
 !.local/*
 !.local/share
@@ -13,13 +14,10 @@
 
 
 !.config/
-!.config/*
 !.config/mako/
 !.config/mako/*
-
 !.config/waybar/
 !.config/waybar/*
-
 !.config/home-manager/
 !.config/home-manager/*
 !.config/wezterm/
@@ -36,3 +34,4 @@
 !.config/nvim/lua/byda/lazy/*
 !.config/nvim/lua/byda/config/
 !.config/nvim/lua/byda/config/*
+
