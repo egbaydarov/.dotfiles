@@ -26,6 +26,7 @@
     Service = {
       ExecStart = "${pkgs.callPackage ./twitchalarm.nix { }}/bin/twitch-notifs";
       Restart = "always";
+      EnvironmentFile = "/etc/twitchalarm.env";
     };
     Install = {
       WantedBy = [ "default.target" ];
@@ -47,6 +48,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.telegram-desktop
     (import ./twitchalarm.nix { inherit pkgs; })
   ];
 
