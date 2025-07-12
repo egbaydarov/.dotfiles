@@ -8,7 +8,7 @@ pkgs.buildGoModule rec {
     owner = "egbaydarov";
     repo = "twitchalarm";
     rev = "master";
-    sha256 = "sha256-bvTK4yW7CC+cr4rnfffRZI5MoO6ucmiGx+t8t8j3cxU=";
+    sha256 = "sha256-jAA3oojMUjXiFrPei1FxX9yX+e0DL4WBT+r4YGRm078=";
   };
 
   vendorHash = "sha256-TTg8kaVTVZIUJ5u/YvMveGQOsbZPR5MXa4CLO8dLSgI=";

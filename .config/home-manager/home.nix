@@ -49,6 +49,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     pkgs.telegram-desktop
+    pkgs.firefox-devedition
     (import ./twitchalarm.nix { inherit pkgs; })
   ];
 

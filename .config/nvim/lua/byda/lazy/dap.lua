@@ -69,6 +69,7 @@ return {
       vim.keymap.set("n", "<F10>", dap.step_out)
       vim.keymap.set("n", "<F11>", dap.step_back)
       vim.keymap.set("n", "<F12>", dap.restart)
+      vim.keymap.set("n", "<F6>", dap.terminate)
       vim.keymap.set("n", "<leader>?", ui.toggle)
     end,
   },

@@ -106,6 +106,13 @@ config.keys = {
     },
   },
   {
+    key = '6',
+    mods = 'ALT',
+    action = act.SwitchToWorkspace {
+      name = 'f6',
+    },
+  },
+  {
     key = 'm',
     mods = 'ALT',
     action = wezterm.action.TogglePaneZoomState,
@@ -168,6 +175,12 @@ wezterm.on('gui-startup',
         workspace = 'f5',
         cwd = '/etc/nixos',
         args = { "sudo", "-E", "nvim", "." }
+      }
+
+      local tab, pane, window = mux.spawn_window {
+        workspace = 'f6',
+        cwd = home_dir .. '/sandbox/db',
+        args = { "nix-shell" }
       }
     end
 
