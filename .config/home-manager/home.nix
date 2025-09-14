@@ -1,11 +1,21 @@
 { config, pkgs, ... }:
-
 {
   home.username = "byda";
   home.homeDirectory = "/home/byda";
-  home.stateVersion = "25.05"; # Please read the comment before changing.
-  programs.home-manager.enable = true;
+  home.stateVersion = "25.05";
+  programs.bash = {
+    enable = true;
+  };
+  programs.bash.shellAliases = {
+    ll = "ls -l";
+    la = "ls -la";
+    gs = "git status";
+    v = "nvim";
+    curb = "nohup cursor . > /dev/null 2>&1";
+    "..." = "cd ../..";
+  };
 
+  programs.home-manager.enable = true;
   nixpkgs.overlays =
     let
       # Change this to a rev sha to pin
@@ -26,6 +36,9 @@
     Service = {
       ExecStart = "${pkgs.callPackage ./twitchalarm.nix { }}/bin/twitch-notifs";
       Restart = "always";
+      RestartSec = "5s";
+      StartLimitIntervalSec = 30;
+      StartLimitBurst = 10;
       EnvironmentFile = "/etc/twitchalarm.env";
     };
     Install = {
@@ -48,7 +61,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.telegram-desktop
+    pkgs.dbeaver-bin
     pkgs.firefox-devedition
     (import ./twitchalarm.nix { inherit pkgs; })
   ];

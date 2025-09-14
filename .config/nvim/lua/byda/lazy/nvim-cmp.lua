@@ -30,12 +30,12 @@ return {
           { name = 'path' },
         },
       })
-      cmp.setup.filetype({"sql"},{
-        sources = {
-          { name = "vim-dadbod-completion" },
-          { name = "buffer" },
-        },
-      })
+     -- cmp.setup.filetype({"sql"},{
+      --  sources = {
+       --   { name = "vim-dadbod-completion" },
+      --  { name = "buffer" },
+    --    },
+    --  })
 
       -- Enable LSP capabilities for nvim-cmp
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
