@@ -1,10 +1,21 @@
 return {
   {
+    "Decodetalkers/csharpls-extended-lsp.nvim",
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
         -- require("lspconfig").lua_ls.setup {}
-        require("lspconfig").csharp_ls.setup {}
-        require("lspconfig").gopls.setup {
+        vim.lsp.config("csharp_ls", {
+           cmd = { "csharp-ls" },
+           -- prefer .sln as project root
+           root_dir = require('lspconfig').util.root_pattern("*.sln", "*.csproj", ".git"),
+          handlers = {
+            ["textDocument/definition"]     = require("csharpls_extended").handler,
+            ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+          },
+        })
+        vim.lsp.config("gopls",{
            on_attach = on_attach,
            capabilities = capabilities,
            settings = {
@@ -16,7 +27,7 @@ return {
                }
              }
            }
-        }
+        })
     end 
   },
   {

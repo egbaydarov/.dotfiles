@@ -6,37 +6,37 @@
   "name": "first",
 	
   "modules-left": [
-    "custom/spacer1",
-    "custom/spacer1",
+    "custom/spacer",
+    "custom/spacer",
     "hyprland/workspaces",
-    "custom/spacer1",
+    "custom/spacer",
     "hyprland/window"
 	],
 
   "modules-center": [
-    "custom/spacer1",
+    "custom/spacer",
     "pulseaudio#input",
-    "custom/spacer1",
+    "custom/spacer",
     "pulseaudio#output",
-    "custom/spacer1",
-    "hyprland/language",
-    "custom/spacer1",
+    "custom/spacer",
+    "custom/spacer",
     "custom/vpn_ru",
-    "custom/spacer1",
+    "custom/spacer",
     "custom/vpn_visi",
-    "custom/spacer1",
+    "custom/spacer",
     "custom/vpn_okolo",
-    "custom/spacer1",
+    "custom/spacer",
 	],
 
 	"modules-right": [
+    "network#info",
     "cpu",
     "temperature",
 		"memory#ram",
     "disk",
-    "network#info",
-    "battery",
     "clock",
+    "battery",
+    "hyprland/language"
 	],
 
 	// Modules
@@ -69,9 +69,9 @@
 	},
 
 	"clock": {
-		"interval": 10,
+		"interval": 1,
 		"tooltip": false,
-		"format": " {:%H:%M %d/%m/%Y}",
+		"format": " {:%H:%M:%S %d/%m/%Y}"
 	},
 
 	"cpu": {
@@ -83,16 +83,14 @@
 			"critical": 95
 		}
 	},
-
 	"hyprland/language": {
-		"format": "  {}",
-    "format-ru": "Russian (RU)",
-		"min-length": 7,
+		"format": "{} ",
+		"format-en": "🇺🇸",
+    "format-ru": "🇷🇺",
 		"on-click": "hyprctl switchxkblayout current next",
 		"tooltip": false,
     "class": "language"
 	},
-
 	"memory#ram": {
 		"interval": 5,
 		"format": " {percentage}%",
@@ -178,6 +176,7 @@
 	},
 
 	"pulseaudio#output": {
+    "min-length": 7,
 		"format": "{icon} {volume}%",
 		"format-bluetooth": "{icon} {volume}%",
 		"format-source-muted": "{volume}",
@@ -192,10 +191,11 @@
 		},
 		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"tooltip": true,
-	  "scroll-step": 5
+	  "scroll-step": 3
   },
 
   "pulseaudio#input": {
+    "min-length": 7,
     "format": " {format_source}%",
     "format-source": "{volume}",
     "format-source-muted": "{volume}",
@@ -220,46 +220,36 @@
 		"tooltip": false
 	},
 
-  "custom/spacer1": {
+  "custom/spacer": {
 		"format": " ",
 		"tooltip": false
 	},
 
-  "custom/spacer2": {
-		"format": " ",
-		"tooltip": false
-  },
-
-  "custom/spacer3": {
-		"format": " ",
-		"tooltip": false
-  },
-
   "custom/vpn_ru": {
-    "exec": "~/.config/waybar/vpn_ru.sh",
+    "exec": "~/.config/waybar/vpn_white.sh",
     "interval": 1,
     "return-type": "json",
-    "format": "r",
+    "format": "w",
     "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet wg-quick-wgru && sudo systemctl stop wg-quick-wgru || sudo systemctl start wg-quick-wgru'"
+    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-whiteVPN.service && sudo systemctl stop openvpn-whiteVPN.service || sudo systemctl start openvpn-whiteVPN.service'"
   },
 
   "custom/vpn_visi": {
-    "exec": "~/.config/waybar/vpn_visi.sh",
+    "exec": "~/.config/waybar/vpn_intra.sh",
     "interval": 1,
     "return-type": "json",
-    "format": "v",
+    "format": "i",
     "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet wg-quick-wgvisi && sudo systemctl stop wg-quick-wgvisi || sudo systemctl start wg-quick-wgvisi'"
+    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-intraVPN.service && sudo systemctl stop openvpn-intraVPN.service || sudo systemctl start openvpn-intraVPN.service'"
   },
 
   "custom/vpn_okolo": {
-    "exec": "~/.config/waybar/vpn_okolo.sh",
+    "exec": "~/.config/waybar/vpn_projects.sh",
     "interval": 1,
     "return-type": "json",
-    "format": "o",
+    "format": "p",
     "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet wg-quick-wgokolo && sudo systemctl stop wg-quick-wgokolo || sudo systemctl start wg-quick-wgokolo'"
+    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-projectsVPN.service && sudo systemctl stop openvpn-projectsVPN.service  || sudo systemctl start openvpn-projectsVPN.service '"
   }
 },
 

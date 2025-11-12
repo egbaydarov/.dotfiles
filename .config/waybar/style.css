@@ -2,6 +2,7 @@
 /* Color names are wrong */
 @define-color darkgrey #586e75;
 @define-color white    #657b83;
+@define-color redd     #db8667;
 @define-color warning  #dc322f;
 @define-color indigo1  #c8bfc3;
 @define-color indigo2  rgba(253, 246, 227, 0.93);
@@ -39,11 +40,30 @@
     transition: all 0.15s ease-in-out;
 }
 
+#waybar.first button:focus,
+#waybar.first button:checked, 
+#waybar.first button:active, 
+#waybar.first button:focus-visible {
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
+
+#waybar.first #clock{
+    padding-left: 8pt;
+    padding-right: 8pt;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    border-radius: 5px;
+    background: transparent;
+    color: @redd;
+}
+
 /* Each Main bar module */
 #waybar.first #network,
 #waybar.first #battery,
 #waybar.first #backlight,
-#waybar.first #clock,
 #waybar.first #cpu,
 #waybar.first #language,
 #waybar.first #memory.swap,
@@ -162,9 +182,7 @@
 
 
 /* Custom slashes as spacers */
-#waybar.first #custom-spacer1,
-#waybar.first #custom-spacer2,
-#waybar.first #custom-spacer3 {
+#waybar.first #custom-spacer {
     font-size: 18px;
     color: @white;
     background: transparent;

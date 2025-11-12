@@ -69,6 +69,7 @@ require("lazy").setup(
         },
         config = function(_, opts)
           dofile(vim.g.base46_cache .. "blankline")
+          dofile(vim.g.base46_cache .. "statusline")
 
           local hooks = require "ibl.hooks"
           hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
@@ -245,7 +246,6 @@ require("lazy").setup(
     },
 })
 
-dofile(vim.g.base46_cache .. "statusline")
 require("plenary.reload").reload_module "chadrc"
 local theme = require("chadrc").base46.theme
 require("nvchad.themes.utils").reload_theme(theme)

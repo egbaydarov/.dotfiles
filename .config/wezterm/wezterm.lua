@@ -7,20 +7,18 @@ local mux = wezterm.mux
 config.front_end = 'OpenGL'
 config.enable_wayland = true
 config.use_ime = true
-
 config.font_size = 14
 config.color_scheme = 'Solarized Light (Gogh)'
 config.cell_width = 1.07
 config.enable_tab_bar = false
 config.window_padding = {
-  left = 5,
-  right = 5,
-  top = 5,
-  bottom = 5,
+  left = 10,
+  right = 10,
+  top = 10,
+  bottom = 0,
 }
 
 config.keys = {
-
   { key = 'V', mods = 'CMD', action = act.PasteFrom 'Clipboard' },
   { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
   { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
@@ -113,6 +111,34 @@ config.keys = {
     },
   },
   {
+    key = '7',
+    mods = 'ALT',
+    action = act.SwitchToWorkspace {
+      name = 'f7',
+    },
+  },
+  {
+    key = '8',
+    mods = 'ALT',
+    action = act.SwitchToWorkspace {
+      name = 'f8',
+    },
+  },
+  {
+    key = '9',
+    mods = 'ALT',
+    action = act.SwitchToWorkspace {
+      name = 'f9',
+    },
+  },
+  {
+    key = '0',
+    mods = 'ALT',
+    action = act.SwitchToWorkspace {
+      name = 'f0',
+    },
+  },
+  {
     key = 'm',
     mods = 'ALT',
     action = wezterm.action.TogglePaneZoomState,
@@ -131,7 +157,7 @@ wezterm.on('gui-startup',
     -- Set a workspace for coding on a current project
     -- Top pane is for the editor, bottom pane is for the build tool
     local home_dir = wezterm.home_dir
-    local proj_dir = home_dir .. '/sandbox/OKOLO'
+    local proj_dir = home_dir .. './stuff'
     local tab, build_pane, window = mux.spawn_window {
       workspace = 'f1',
       cwd = proj_dir,
@@ -141,7 +167,6 @@ wezterm.on('gui-startup',
       direction = 'Top',
       size = 0.9,
       cwd = proj_dir,
-      args = { "nix-shell" }
     }
 --    local editor_pane_aux = editor_pane:split {
 --      direction = 'Left',
@@ -150,15 +175,11 @@ wezterm.on('gui-startup',
 --      args = { "nvim", "." }
 --    }
 
-    if args.boot_arg then
-        build_pane:send_text(args.boot_arg .. "\n")
-    end
 
     if not args.dir then
       local tab, pane, window = mux.spawn_window {
         workspace = 'f2',
         cwd = home_dir .. '/.config',
-        args = { "nvim", "." }
       }
 
       local tab, pane, window = mux.spawn_window {
@@ -179,8 +200,27 @@ wezterm.on('gui-startup',
 
       local tab, pane, window = mux.spawn_window {
         workspace = 'f6',
-        cwd = home_dir .. '/sandbox/db',
-        args = { "nix-shell" }
+        cwd = home_dir .. '/stuff',
+      }
+
+      local tab, pane, window = mux.spawn_window {
+        workspace = 'f7',
+        cwd = home_dir .. '/stuff',
+      }
+
+      local tab, pane, window = mux.spawn_window {
+        workspace = 'f8',
+        cwd = home_dir .. '/stuff',
+      }
+
+      local tab, pane, window = mux.spawn_window {
+        workspace = 'f9',
+        cwd = home_dir .. '/stuff',
+      }
+
+      local tab, pane, window = mux.spawn_window {
+        workspace = 'f0',
+        cwd = home_dir .. '/stuff',
       }
     end
 
