@@ -160,7 +160,7 @@ wezterm.on('gui-startup',
     -- Set a workspace for coding on a current project
     -- Top pane is for the editor, bottom pane is for the build tool
     local home_dir = wezterm.home_dir
-    local proj_dir = home_dir .. './stuff'
+    local proj_dir = home_dir .. './sandbox'
     local tab, build_pane, window = mux.spawn_window {
       workspace = 'f1',
       cwd = proj_dir,
@@ -203,27 +203,27 @@ wezterm.on('gui-startup',
 
       local tab, pane, window = mux.spawn_window {
         workspace = 'f6',
-        cwd = home_dir .. '/stuff',
+        cwd = home_dir .. '/sandbox',
       }
 
       local tab, pane, window = mux.spawn_window {
         workspace = 'f7',
-        cwd = home_dir .. '/stuff',
+        cwd = home_dir .. '/sandbox',
       }
 
       local tab, pane, window = mux.spawn_window {
         workspace = 'f8',
-        cwd = home_dir .. '/stuff',
+        cwd = home_dir .. '/sandbox',
       }
 
       local tab, pane, window = mux.spawn_window {
         workspace = 'f9',
-        cwd = home_dir .. '/stuff',
+        cwd = home_dir .. '/sandbox',
       }
 
       local tab, pane, window = mux.spawn_window {
         workspace = 'f0',
-        cwd = home_dir .. '/stuff',
+        cwd = home_dir .. '/sandbox',
       }
     end
 
