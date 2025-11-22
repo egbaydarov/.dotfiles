@@ -5,7 +5,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-        -- require("lspconfig").lua_ls.setup {}
+        vim.lsp.config("lua_ls", {})
         vim.lsp.config("csharp_ls", {
            cmd = { "csharp-ls" },
            -- prefer .sln as project root

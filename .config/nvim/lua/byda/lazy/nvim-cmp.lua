@@ -37,10 +37,12 @@ return {
     --    },
     --  })
 
+
       -- Enable LSP capabilities for nvim-cmp
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      require('lspconfig').pyright.setup({
-        capabilities = capabilities,
+
+      vim.lsp.config('pyright', {
+        capabilities = capabilities
       })
     end,
   }}

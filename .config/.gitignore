@@ -1,6 +1,9 @@
 *
 
 !.gitignore
+!.profile
+!.gdbinit
+!.bashrc
 !wezterm/
 !wezterm/*
 !hypr/
