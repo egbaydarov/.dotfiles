@@ -6,16 +6,19 @@ local mux = wezterm.mux
 -- temporary for NixOs
 config.front_end = 'OpenGL'
 config.enable_wayland = true
-config.use_ime = true
-config.font_size = 14
+config.use_ime = false
+config.max_fps = 144
+config.font_size = 12
+config.initial_cols = 120
+config.initial_rows = 28
 config.color_scheme = 'Solarized Light (Gogh)'
 config.cell_width = 1.07
 config.enable_tab_bar = false
 config.window_padding = {
-  left = 10,
-  right = 10,
-  top = 10,
-  bottom = 0,
+  left = 5,
+  right = 5,
+  top = 5,
+  bottom = 5,
 }
 
 config.keys = {
