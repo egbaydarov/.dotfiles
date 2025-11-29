@@ -226,30 +226,30 @@
 	},
 
   "custom/vpn_ru": {
-    "exec": "~/.config/waybar/vpn_white.sh",
+    "exec": "~/.config/waybar/vpn_wh.sh",
     "interval": 1,
     "return-type": "json",
     "format": "w",
     "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-whiteVPN.service && sudo systemctl stop openvpn-whiteVPN.service || sudo systemctl start openvpn-whiteVPN.service'"
+    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-whVPN.service && sudo systemctl stop openvpn-whVPN.service || sudo systemctl start openvpn-whVPN.service'"
   },
 
   "custom/vpn_visi": {
-    "exec": "~/.config/waybar/vpn_intra.sh",
+    "exec": "~/.config/waybar/vpn_i.sh",
     "interval": 1,
     "return-type": "json",
     "format": "i",
     "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-intraVPN.service && sudo systemctl stop openvpn-intraVPN.service || sudo systemctl start openvpn-intraVPN.service'"
+    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-iVPN.service && sudo systemctl stop openvpn-iVPN.service || sudo systemctl start openvpn-iVPN.service'"
   },
 
   "custom/vpn_okolo": {
-    "exec": "~/.config/waybar/vpn_projects.sh",
+    "exec": "~/.config/waybar/vpn_p.sh",
     "interval": 1,
     "return-type": "json",
     "format": "p",
     "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-projectsVPN.service && sudo systemctl stop openvpn-projectsVPN.service  || sudo systemctl start openvpn-projectsVPN.service '"
+    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-pVPN.service && sudo systemctl stop openvpn-pVPN.service  || sudo systemctl start openvpn-pVPN.service '"
   }
 },
 

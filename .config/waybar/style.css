@@ -2,7 +2,7 @@
 /* Color names are wrong */
 @define-color darkgrey #586e75;
 @define-color white    #657b83;
-@define-color redd     #db8667;
+@define-color redd    #db8667;
 @define-color warning  #dc322f;
 @define-color indigo1  #c8bfc3;
 @define-color indigo2  rgba(253, 246, 227, 0.93);
