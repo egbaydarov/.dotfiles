@@ -1,20 +1,31 @@
 return {
   {
-    "Decodetalkers/csharpls-extended-lsp.nvim",
-  },
-  {
     "neovim/nvim-lspconfig",
     config = function()
-        vim.lsp.config("lua_ls", {})
-        vim.lsp.config("csharp_ls", {
-           cmd = { "csharp-ls" },
-           -- prefer .sln as project root
-           root_dir = require('lspconfig').util.root_pattern("*.sln", "*.csproj", ".git"),
-          handlers = {
-            ["textDocument/definition"]     = require("csharpls_extended").handler,
-            ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+        vim.lsp.config("lua_ls", {
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {
+            Lua = {
+              runtime = { version = "LuaJIT" },
+              diagnostics = { globals = { "vim" } },
+
+              workspace = {
+                library = {
+                  -- This loads Neovim's runtime (including type definitions)
+                  vim.fn.expand("$VIMRUNTIME/lua"),
+                  vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+                },
+                checkThirdParty = false,
+              },
+            },
           },
+        }) 
+        vim.lsp.enable("lua_ls", {
+          filetypes = { "lua" },
         })
+
+
         vim.lsp.config("gopls",{
            on_attach = on_attach,
            capabilities = capabilities,
@@ -28,6 +39,7 @@ return {
              }
            }
         })
+        vim.lsp.enable("gopls", { filetypes = { "go", "gomod" } })
     end 
   },
   {
