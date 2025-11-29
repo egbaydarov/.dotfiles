@@ -13,7 +13,6 @@ pkgs.buildGoModule rec {
 
   vendorHash = "sha256-TTg8kaVTVZIUJ5u/YvMveGQOsbZPR5MXa4CLO8dLSgI=";
 
-  CGO_ENABLED = 0;
 
   doCheck = false;
 

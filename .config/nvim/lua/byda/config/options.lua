@@ -3,7 +3,6 @@ vim.opt.timeout = false
 vim.g.mapleader = " "
 vim.g.netrw_list_hide = ''
 vim.g.netrw_hide = 0
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 local opt = vim.opt
 

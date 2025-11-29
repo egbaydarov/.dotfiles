@@ -2,10 +2,13 @@
 {
   home.username = "byda";
   home.homeDirectory = "/home/byda";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
   programs.bash = {
     enable = true;
   };
+  programs.bash.bashrcExtra = ''
+    eval "$(fzf --bash)"
+  '';
   programs.bash.shellAliases = {
     ll = "ls -l";
     la = "ls -la";
@@ -16,18 +19,6 @@
   };
 
   programs.home-manager.enable = true;
-  nixpkgs.overlays =
-    let
-      # Change this to a rev sha to pin
-      moz-rev = "master";
-      moz-url = builtins.fetchTarball { url = "https://github.com/mozilla/nixpkgs-mozilla/archive/${moz-rev}.tar.gz";};
-      nightlyOverlay = (import "${moz-url}/firefox-overlay.nix");
-    in [
-      nightlyOverlay
-    ];
-  programs.firefox.enable = true;
-  programs.firefox.package = pkgs.latest.firefox-nightly-bin;
-
   systemd.user.services.twitchalarm = {
     Unit = {
       Description = "Twitch Notifier";
@@ -62,7 +53,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     pkgs.dbeaver-bin
-    pkgs.firefox-devedition
     (import ./twitchalarm.nix { inherit pkgs; })
   ];
 
@@ -75,9 +65,9 @@
     # ".screenrc".source = dotfiles/screenrc;
 
     # # You can also set the file content immediately.
-    ".bashrc".text = ''
-      eval "$(fzf --bash)"
-    '';
+    #".bashrc".text = ''
+    #  eval "$(fzf --bash)"
+    #'';
   };
 
   # Home Manager can also manage your environment variables through
