@@ -22,8 +22,14 @@
 !.config/home-manager/*
 !.config/wezterm/
 !.config/wezterm/*
+!.config/kitty/
+!.config/kitty/*
+!.config/fuzzel/
+!.config/fuzzel/*
 !.config/hypr/
 !.config/hypr/*
+!.config/hypr/scripts
+!.config/hypr/scripts/*
 !.config/nvim/
 !.config/nvim/*
 !.config/nvim/lua/
