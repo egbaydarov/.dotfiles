@@ -25,18 +25,20 @@
     "custom/vpn_visi",
     "custom/spacer",
     "custom/vpn_okolo",
-    "custom/spacer",
+    "custom/spacer"
 	],
 
 	"modules-right": [
-    "network#info",
-    "cpu",
-    "temperature",
-		"memory#ram",
-    "disk",
-    "clock",
-    "battery",
-    "hyprland/language"
+		"custom/network",
+		"custom/cpu",
+		"custom/temperature",
+		"custom/memory",
+		"custom/disk",
+    "custom/spacer",
+		"clock",
+    "custom/spacer",
+		"battery",
+		"hyprland/language"
 	],
 
 	// Modules
@@ -57,15 +59,9 @@
 		"format-charging": " {capacity}%",
 		"format-charging-full": " {capacity}%",
 		"format-full": "{icon} {capacity}%",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-		],
+		"format-icons": ["", "", "", "", ""],
 		"tooltip": "{}",
-    "tooltip-format": " {power}W"
+		"tooltip-format": " {power}W"
 	},
 
 	"clock": {
@@ -86,101 +82,99 @@
 	"hyprland/language": {
 		"format": "{} ",
 		"format-en": "🇺🇸",
-    "format-ru": "🇷🇺",
+		"format-ru": "🇷🇺",
 		"on-click": "hyprctl switchxkblayout current next",
 		"tooltip": false,
-    "class": "language"
+		"class": "language"
 	},
-	"memory#ram": {
+	"custom/memory": {
+		"exec": "~/.config/waybar/memory.sh",
 		"interval": 5,
-		"format": " {percentage}%",
-    "states": {
+		"return-type": "json",
+		"format": " {}",
+		"states": {
+			"warning": 80,
+			"critical": 90
+		}
+	},
+	"custom/cpu": {
+		"exec": "~/.config/waybar/cpu.sh",
+		"interval": 5,
+		"return-type": "json",
+		"format": "󰍛 {}",
+		"states": {
 			"warning": 80,
 			"critical": 95
+		}
+	},
+	"custom/disk": {
+		"exec": "~/.config/waybar/disk.sh",
+		"interval": 10,
+		"return-type": "json",
+		"format": "󰋊 {}",
+		"states": {
+			"warning": 80,
+			"critical": 90
 		},
-		"tooltip": "{}",
-    "tooltip-format":"{used}/{total} GiB"
+		"on-click": "qdirstat"
 	},
 
 	"network#info": {
 		"interval": 1,
 		"format": "󱘖  Offline",
-    "format-wifi": "{icon} {bandwidthDownBits}",
-    "format-ethernet": "󰈀 {bandwidthDownBits}",
+		"format-wifi": "{icon} {bandwidthDownBits}",
+		"format-ethernet": "󰈀 {bandwidthDownBits}",
 		"min-length": 11,
-    "tooltip": "{}",
-    "tooltip-format-wifi": "{ifname}\n{essid}\n{signalStrength}% \n{frequency} GHz\n󰇚 {bandwidthDownBits}\n󰕒 {bandwidthUpBits}",
-    "tooltip-format-ethernet": "{ifname}\n󰇚 {bandwidthDownBits} \n󰕒 {bandwidthUpBits}",
+		"tooltip": "{}",
+		"tooltip-format-wifi": "{ifname}\n{essid}\n{signalStrength}% \n{frequency} GHz\n󰇚 {bandwidthDownBits}\n󰕒 {bandwidthUpBits}",
+		"tooltip-format-ethernet": "{ifname}\n󰇚 {bandwidthDownBits} \n󰕒 {bandwidthUpBits}",
 		"on-click": "iwgtk",
-		"format-icons": [
-			"󰤫",
-			"󰤟",
-			"󰤢",
-			"󰤥",
-			"󰤨"
-    ],
-	  "states": {
-      "normal": 25
-    }
-  },
-  
-  "network#up": {
-    "interval": 5,
-    "format": " ",
-    "format-wifi": "󰕒 {bandwidthUpBits}",
-    "format-ethernet": "󰕒 {bandwidthUpBits}",
-    "format-disconnected": " ",
-    "min-length": 11
-  },
-
-  "network#down": {
-    "interval": 5,
-    "format": "󰇚 {bandwidthDownBits}",
-    "format-wifi": "󰇚 {bandwidthDownBits}",
-    "format-ethernet": "󰇚 {bandwidthDownBits}",
-    "min-length": 11
-  },
+		"format-icons": ["󰤫", "󰤟", "󰤢", "󰤥", "󰤨"],
+		"states": {
+			"normal": 25
+		}
+	},
 
 	"hyprland/submap": {
 		"always-on": true,
-    "default-submap": "",
-    "format": "[{}]",
-    "format-resize": "{}",
+		"default-submap": "",
+		"format": "[{}]",
+		"format-resize": "{}",
 		"tooltip": false
 	},
 
 	"hyprland/window": {
 		"format": "{initialClass}",
-    "max-length": 48,
+		"max-length": 48,
 		"tooltip": false,
-    "icon": true,
-    "icon-size": 18
+		"icon": true,
+		"icon-size": 18
 	},
 
 	"hyprland/workspaces": {
 		"disable-scroll-wraparound": false,
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+		"on-scroll-up": "hyprctl dispatch workspace e+1",
+		"on-scroll-down": "hyprctl dispatch workspace e-1",
 		"smooth-scrolling-threshold": 1,
 		"enable-bar-scroll": true,
 		"format": "{icon}",
-    "show-special": true,
-    "special-visible-only": true,
-    "format-icons": {
-      "magic": "s",
-      "amper": "a",
-      "fooshan": "f",
-      "diddy": "d",
-      "10": "0"
-    }
+		"show-special": true,
+		"special-visible-only": true,
+		"format-icons": {
+			"magic": "s",
+			"amper": "a",
+			"fooshan": "f",
+			"diddy": "d",
+			"10": "0"
+		}
 	},
 
 	"pulseaudio#output": {
-    "min-length": 7,
+		"min-length": 7,
 		"format": "{icon} {volume}%",
 		"format-bluetooth": "{icon} {volume}%",
 		"format-source-muted": "{volume}",
-    "format-icons": {
+		"format-icons": {
 			"headphone": "",
 			"hands-free": "",
 			"headset": "",
@@ -191,86 +185,85 @@
 		},
 		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"tooltip": true,
-	  "scroll-step": 3
-  },
-
-  "pulseaudio#input": {
-    "min-length": 7,
-    "format": " {format_source}%",
-    "format-source": "{volume}",
-    "format-source-muted": "{volume}",
-    "on-scroll-up": "sh -c 'vol=$(pactl get-source-volume @DEFAULT_SOURCE@ | grep -oP \"\\d+(?=%)\" | head -1); if [ \"$vol\" -lt 100 ]; then pactl set-source-volume @DEFAULT_SOURCE@ +2%; fi'",
-    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -2%",
-    "max-volume": "100",
-    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-    "tooltip-format": "{source_desc}"
-  },
-
-	"temperature": {
-		"critical-threshold": 90,
-		"interval": 5,
-		"format": "{icon} {temperatureC}°",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-		],
-		"tooltip": false
+		"scroll-step": 3
 	},
 
-  "custom/spacer": {
+	"pulseaudio#input": {
+		"min-length": 7,
+		"format": " {format_source}%",
+		"format-source": "{volume}",
+		"format-source-muted": "{volume}",
+		"on-scroll-up": "sh -c 'vol=$(pactl get-source-volume @DEFAULT_SOURCE@ | grep -oP \"\\d+(?=%)\" | head -1); if [ \"$vol\" -lt 100 ]; then pactl set-source-volume @DEFAULT_SOURCE@ +2%; fi'",
+		"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -2%",
+		"max-volume": "100",
+		"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+		"tooltip-format": "{source_desc}"
+	},
+
+	"custom/temperature": {
+		"exec": "~/.config/waybar/temperature.sh",
+		"interval": 5,
+		"return-type": "json",
+		"format": "{}",
+		"states": {
+			"warning": 80,
+			"critical": 90
+		}
+	},
+	"custom/network": {
+		"exec": "~/.config/waybar/network.sh",
+		"interval": 1,
+		"return-type": "json",
+		"format": "{}",
+		"min-length": 11,
+		"on-click": "iwgtk"
+	},
+
+	"custom/spacer": {
 		"format": " ",
 		"tooltip": false
 	},
 
-  "custom/vpn_ru": {
-    "exec": "~/.config/waybar/vpn_wh.sh",
-    "interval": 1,
-    "return-type": "json",
-    "format": "w",
-    "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-whVPN.service && sudo systemctl stop openvpn-whVPN.service || sudo systemctl start openvpn-whVPN.service'"
-  },
-
-  "custom/vpn_visi": {
-    "exec": "~/.config/waybar/vpn_i.sh",
-    "interval": 1,
-    "return-type": "json",
-    "format": "i",
-    "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-iVPN.service && sudo systemctl stop openvpn-iVPN.service || sudo systemctl start openvpn-iVPN.service'"
-  },
-
-  "custom/vpn_okolo": {
-    "exec": "~/.config/waybar/vpn_p.sh",
-    "interval": 1,
-    "return-type": "json",
-    "format": "p",
-    "tooltip": false,
-    "on-click": "bash -c 'sudo systemctl is-active --quiet openvpn-pVPN.service && sudo systemctl stop openvpn-pVPN.service  || sudo systemctl start openvpn-pVPN.service '"
-  }
+	"custom/vpn_ru": {
+		"exec": "~/.config/waybar/vpn.sh 0",
+		"interval": 1,
+		"return-type": "json",
+		"tooltip": false,
+		"format": "w",
+		"on-click": "~/.config/waybar/vpn.sh 0 --toggle"
+	},
+	"custom/vpn_visi": {
+		"exec": "~/.config/waybar/vpn.sh 1",
+		"interval": 1,
+		"return-type": "json",
+		"tooltip": false,
+		"format": "i",
+		"on-click": "~/.config/waybar/vpn.sh 1 --toggle"
+	},
+	"custom/vpn_okolo": {
+		"exec": "~/.config/waybar/vpn.sh 2",
+		"interval": 1,
+		"return-type": "json",
+		"tooltip": false,
+		"format": "p",
+		"on-click": "~/.config/waybar/vpn.sh 2 --toggle"
+	}
 },
 
 {
-  // INDICATOR //
-  "layer": "top",
-  "position": "top",
-  "name": "second",
-  "width": 2304,
-  "margin-top": -1,
-
-  "modules-left": [
-    "battery"
-  ],
-
+	// INDICATOR //
+	"layer": "top",
+	"position": "top",
+	"name": "second",
+	"width": 2560,
+	"margin-top": -1,
+	"modules-left": ["battery"],
 	"battery": {
 		"interval": 10,
-    "format": "{} ",
+		"format": "{} ",
 		"format-critical": " ",
-    "states": {
+		"states": {
 			"critical": 10
 		}
-  }
+	}
 }]

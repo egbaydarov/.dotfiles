@@ -1,21 +1,18 @@
-/* Solarized Light Waybar Theme */
-/* Color names are wrong */
-@define-color darkgrey #586e75;
-@define-color white    #657b83;
-@define-color redd    #db8667;
-@define-color warning  #dc322f;
-@define-color indigo1  #c8bfc3;
-@define-color indigo2  rgba(253, 246, 227, 0.93);
-@define-color indigo3  rgba(253, 246, 227, 1.0);
-@define-color resize   #cb4b16;
+@define-color base01    #586e75;
+@define-color base00    #657b83;
+@define-color accent    #db8667;
+@define-color red       #dc322f;
+@define-color highlight #c8bfc3;
+@define-color base2     rgba(253, 246, 227, 0.93);
+@define-color orange    #cb4b16;
 
 /* Reset all styles */
 * {
     border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: -2;
-    padding: 0;
+    border-radius: 0pt;
+    min-height: 0pt;
+    margin: 0pt;
+    padding: 0pt;
     box-shadow: none;
     text-shadow: none;
 }
@@ -26,16 +23,16 @@
 
 /* The Main bar */
 #waybar.first {
-    background: @indigo2;
-    color: @white;
+    background: @base2;
+    color: @base00;
     font-family: JetBrains Mono Nerd Font;
-    font-size: 10pt;
+    font-size: 14pt;
     font-weight: bold;
 }
 
 #waybar.first button {
     font-family: JetBrains Mono Nerd Font;
-    font-size: 10pt;
+    font-size: 14pt;
     font-weight: bold;
     transition: all 0.15s ease-in-out;
 }
@@ -50,14 +47,14 @@
     border: none;
 }
 
-#waybar.first #clock{
+#waybar.first #clock {
     padding-left: 8pt;
     padding-right: 8pt;
-    margin-bottom: 3px;
-    margin-top: 3px;
-    border-radius: 5px;
+    margin-bottom: 3pt;
+    margin-top: 3pt;
+    border-radius: 5pt;
     background: transparent;
-    color: @redd;
+    color: @accent;
 }
 
 /* Each Main bar module */
@@ -68,6 +65,11 @@
 #waybar.first #language,
 #waybar.first #memory.swap,
 #waybar.first #memory.ram,
+#waybar.first #custom-memory,
+#waybar.first #custom-cpu,
+#waybar.first #custom-disk,
+#waybar.first #custom-temperature,
+#waybar.first #custom-network,
 #waybar.first #submap,
 #waybar.first #pulseaudio,
 #waybar.first #temperature,
@@ -76,53 +78,54 @@
 #waybar.first #window {
     padding-left: 8pt;
     padding-right: 8pt;
-    margin-bottom: 3px;
-    margin-top: 3px;
-    border-radius: 5px;
+    margin-bottom: 3pt;
+    margin-top: 3pt;
+    border-radius: 5pt;
     background: transparent;
-    color: @white;
+    color: @base00;
 }
 
+/* VPN modules - consolidated */
+#waybar.first #custom-vpn_ru,
 #waybar.first #custom-vpn_visi,
-#waybar.first #custom-vpn_okolo,
-#waybar.first #custom-vpn_ru{
-    padding-right: 8pt;
-    margin-bottom: 3px;
-    margin-top: 3px;
-    border-radius: 5px;
+#waybar.first #custom-vpn_okolo {
+    padding-left: 1pt;
+    padding-right: 1pt;
+    border-radius: 5pt;
     background: transparent;
-    color: @white;
+    color: @base00;
+    font-size: 14pt;
 }
 
+#custom-vpn_ru.on,
 #custom-vpn_visi.on,
-#custom-vpn_okolo.on,
-#custom-vpn_ru.on {
-  color: #00ff00;
+#custom-vpn_okolo.on {
+    color: #00ff00;
 }
 
+#custom-vpn_ru.off,
 #custom-vpn_visi.off,
-#custom-vpn_okolo.off,
-#custom-vpn_ru.off {
-  color: #ff0000;
-  opacity: 0.5;
+#custom-vpn_okolo.off {
+    color: #ff0000;
+    opacity: 0.5;
 }
 
 #waybar.first #network.info {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: @warning;
+    padding-right: 8pt;
+    padding-left: 8pt;
+    color: @red;
     background: transparent;
 }
 
 #waybar.first #network.info.wifi.normal,
 #waybar.first #network.info.ethernet {
-    color: @white;
-    padding-right: 15px;
+    color: @base00;
+    padding-right: 8pt;
 }
 
 #waybar.first #network.info.wifi {
-    color: @warning;
-    padding-right: 15px;
+    color: @red;
+    padding-right: 8pt;
 }
 
 /* Each Main bar critical module */
@@ -133,7 +136,67 @@
 #waybar.first #cpu.critical,
 #waybar.first #temperature.critical,
 #waybar.first #battery.critical.discharging {
-    color: @white;
+    color: @base00;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-name: blink-critical-text;
+    animation-duration: 1s;
+    animation-timing-function: steps(15);
+}
+
+/* Memory warning at 80% - show red color */
+#waybar.first #custom-memory.warning {
+    color: @red;
+}
+
+/* Memory critical at 90% - show red color (override default critical animation) */
+#waybar.first #custom-memory.critical {
+    color: @red;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-name: blink-critical-text;
+    animation-duration: 1s;
+    animation-timing-function: steps(15);
+}
+
+/* CPU warning at 80% - show red color */
+#waybar.first #custom-cpu.warning {
+    color: @red;
+}
+
+/* CPU critical at 95% - show red color (override default critical animation) */
+#waybar.first #custom-cpu.critical {
+    color: @red;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-name: blink-critical-text;
+    animation-duration: 1s;
+    animation-timing-function: steps(15);
+}
+
+/* Disk warning at 80% - show red color */
+#waybar.first #custom-disk.warning {
+    color: @red;
+}
+
+/* Disk critical at 90% - show red color (override default critical animation) */
+#waybar.first #custom-disk.critical {
+    color: @red;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-name: blink-critical-text;
+    animation-duration: 1s;
+    animation-timing-function: steps(15);
+}
+
+/* Temperature warning at 80% - show red color */
+#waybar.first #custom-temperature.warning {
+    color: @red;
+}
+
+/* Temperature critical at 90% - show red color (override default critical animation) */
+#waybar.first #custom-temperature.critical {
+    color: @red;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-name: blink-critical-text;
@@ -142,7 +205,7 @@
 }
 
 #waybar.first #submap.RESIZE {
-    color: @white;
+    color: @base00;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-name: blink-modifier-text;
@@ -154,72 +217,68 @@
 #waybar.first #pulseaudio.output.muted,
 #waybar.first #pulseaudio.input.source-muted,
 #waybar.first #battery.warning.discharging {
-    color: @warning;
+    color: @red;
 }
 
 /* And now modules themselves in their respective order */
 
 /* Default workspace settings */
 #waybar.first #workspaces button {
-    color: @white;
+    color: @base00;
     background: transparent;
-    font-size: 18px;
-    padding-left: 3pt;
-    padding-right: 2pt;
-    border-radius: 5px;
-    margin-bottom: 3px;
-    margin-top: 3px;
-    margin-left: 3px;
-    margin-right: 3px;
+    font-size: 14pt;
+    padding-left: 8pt;
+    padding-right: 8pt;
+    border-radius: 5pt;
+    margin-bottom: 3pt;
+    margin-top: 3pt;
+    margin-left: 3pt;
+    margin-right: 3pt;
     transition: 0.25s ease;
 }
 
 /* Inactive (on unfocused output) & Active (on focused output) */
 #waybar.first #workspaces button.visible {
-    color: @white;
-    background: @indigo1;
+    color: @base00;
+    background: @highlight;
 }
 
 
 /* Custom slashes as spacers */
 #waybar.first #custom-spacer {
-    font-size: 18px;
-    color: @white;
+    font-size: 14pt;
+    color: @base00;
     background: transparent;
 }
-#waybar.first #custom-vpn_visi,
-#waybar.first #custom-vpn_ru,
-#waybar.first #custom-vpn_okolo {
-  font-size: 14px;
-  padding: 4pt;
-}
 
+/* Hover effects */
 #waybar.first #pulseaudio:hover,
 #waybar.first #workspaces button:hover,
-#waybar.first #custom-vpn_visi:hover,
 #waybar.first #custom-vpn_ru:hover,
+#waybar.first #custom-vpn_visi:hover,
 #waybar.first #custom-vpn_okolo:hover {
-    background-color: @indigo1;
+    background-color: @highlight;
 }
 
 /* Tooltip recolor */
 tooltip {
-    font-size: 14px;
-    background: @white;
-    border-radius: 10px;
+    font-size: 14pt;
+    font-family: JetBrains Mono Nerd Font, monospace;
+    background: @base00;
+    border-radius: 5pt;
     transition: opacity 0.3s ease-in-out;
 }
 
 #waybar.second {
-    font-size: 11px;         /* This makes indicator thicker */
+    font-size: 2pt;
     color: rgba(0,0,0,0);
-    background: @indigo1;
+    background: @highlight;
 }
 
 #waybar.second #battery.critical.discharging {
-    background: @warning;
+    background: @red;
 }
 
 #waybar.second #submap.RESIZE {
-    background: @resize;
+    background: @orange;
 }

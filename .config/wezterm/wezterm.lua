@@ -8,7 +8,7 @@ config.front_end = 'OpenGL'
 config.enable_wayland = true
 config.use_ime = false
 config.max_fps = 144
-config.font_size = 12
+config.font_size = 14
 config.initial_cols = 120
 config.initial_rows = 28
 config.color_scheme = 'Solarized Light (Gogh)'
@@ -197,8 +197,7 @@ wezterm.on('gui-startup',
 
       local tab, pane, window = mux.spawn_window {
         workspace = 'f5',
-        cwd = '/etc/nixos',
-        args = { "sudo", "-E", "nvim", "." }
+        cwd = home_dir .. '/stuff',
       }
 
       local tab, pane, window = mux.spawn_window {
