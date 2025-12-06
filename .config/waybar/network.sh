@@ -12,7 +12,10 @@ fi
 
 # Get network stats (download speed)
 # Use cache file to store previous values for speed calculation
-SPEED_CACHE="/tmp/waybar_network_speed.cache"
+# Use user-specific cache directory
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/waybar"
+mkdir -p "$CACHE_DIR" 2>/dev/null
+SPEED_CACHE="$CACHE_DIR/network_speed.cache"
 RX_BYTES_NEW=$(cat /sys/class/net/"$ACTIVE_IF"/statistics/rx_bytes 2>/dev/null || echo 0)
 TX_BYTES_NEW=$(cat /sys/class/net/"$ACTIVE_IF"/statistics/tx_bytes 2>/dev/null || echo 0)
 
@@ -87,7 +90,7 @@ else
 fi
 
 # Cache file for network users list
-CACHE_FILE="/tmp/waybar_network_users.cache"
+CACHE_FILE="$CACHE_DIR/network_users.cache"
 CACHE_AGE=30  # 30 seconds
 
 # Check if cache exists and is recent
