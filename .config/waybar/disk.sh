@@ -6,7 +6,10 @@ AVAIL=$(echo "$DISK_INFO" | awk '{print $4}')
 PERCENTAGE=$(echo "$DISK_INFO" | awk '{print $5}' | sed 's/%//')
 
 # Cache file for large files list
-CACHE_FILE="/tmp/waybar_disk_large_files.cache"
+# Use user-specific cache directory
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/waybar"
+mkdir -p "$CACHE_DIR" 2>/dev/null
+CACHE_FILE="$CACHE_DIR/disk_large_files.cache"
 CACHE_AGE=600  # 10 minutes in seconds
 
 # Check if cache exists and is recent
@@ -26,7 +29,7 @@ if [ "$UPDATE_CACHE" = true ]; then
     (
         # Use find to locate large files (>100MB) and collect all results first
         # This avoids broken pipe issues by collecting before sorting
-        TEMP_FILE=$(mktemp /tmp/waybar_disk_temp.XXXXXX 2>/dev/null || echo "/tmp/waybar_disk_temp.$$")
+        TEMP_FILE=$(mktemp "$CACHE_DIR/waybar_disk_temp.XXXXXX" 2>/dev/null || echo "$CACHE_DIR/waybar_disk_temp.$$")
         
         # Find large files and collect all results into temp file first
         find /home /tmp /var/log /opt -type f -size +100M 2>/dev/null -exec du -h {} \; 2>/dev/null > "$TEMP_FILE" 2>/dev/null
