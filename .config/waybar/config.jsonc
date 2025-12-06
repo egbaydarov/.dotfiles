@@ -229,7 +229,7 @@
 		"interval": 1,
 		"return-type": "json",
 		"tooltip": false,
-		"format": "w",
+		"format": "{}",
 		"on-click": "~/.config/waybar/vpn.sh 0 --toggle"
 	},
 	"custom/vpn_visi": {
@@ -237,7 +237,7 @@
 		"interval": 1,
 		"return-type": "json",
 		"tooltip": false,
-		"format": "i",
+		"format": "{}",
 		"on-click": "~/.config/waybar/vpn.sh 1 --toggle"
 	},
 	"custom/vpn_okolo": {
@@ -245,7 +245,7 @@
 		"interval": 1,
 		"return-type": "json",
 		"tooltip": false,
-		"format": "p",
+		"format": "{}",
 		"on-click": "~/.config/waybar/vpn.sh 2 --toggle"
 	}
 },

@@ -56,10 +56,34 @@ if [ "$ACTION" = "--toggle" ]; then
   exit 0
 fi
 
+# Get VPN name/label based on index and username
+VPN_TEXT=""
+case "$USER_NAME" in
+  boogie)
+    case "$INDEX" in
+      0) VPN_TEXT="w" ;;
+      1) VPN_TEXT="i" ;;
+      2) VPN_TEXT="p" ;;
+      *) VPN_TEXT="" ;;
+    esac
+    ;;
+  byda)
+    case "$INDEX" in
+      0) VPN_TEXT="ru" ;;
+      1) VPN_TEXT="visi" ;;
+      2) VPN_TEXT="okolo" ;;
+      *) VPN_TEXT="" ;;
+    esac
+    ;;
+  *)
+    VPN_TEXT=""
+    ;;
+esac
+
 # Status mode
 if systemctl is-active --quiet "$UNIT"; then
-  echo '{"text": "", "class": "on"}'
+  echo "{\"text\": \"${VPN_TEXT}\", \"class\": \"on\"}"
 else
-  echo '{"text": "", "class": "off"}'
+  echo "{\"text\": \"${VPN_TEXT}\", \"class\": \"off\"}"
 fi
 
