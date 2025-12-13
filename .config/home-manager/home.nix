@@ -14,8 +14,47 @@
     la = "ls -la";
     gs = "git status";
     v = "nvim";
-    curb = "nohup cursor . > /dev/null 2>&1";
+    curb = "nohup cursor . > /dev/null 2>&1 &";
     "..." = "cd ../..";
+  };
+
+  xdg.desktopEntries = {
+    qvidcap = {
+      name = "qvidcap";
+      noDisplay = true;
+    };
+    qv4l2 = {
+      name = "qv4l2";
+      noDisplay = true;
+    };
+    "org.gtk.gtk4.NodeEditor" = {
+      name = "GTK4 Node Editor";
+      noDisplay = true;
+    };
+    "org.gtk.WidgetFactory4" = {
+      name = "GTK4 Widget Factory";
+      noDisplay = true;
+    };
+    "org.gtk.PrintEditor4" = {
+      name = "GTK4 Print Editor";
+      noDisplay = true;
+    };
+    "org.gtk.Demo4" = {
+      name = "GTK4 Demo";
+      noDisplay = true;
+    };
+    "nvim" = {
+      name = "Neovim";
+      noDisplay = true;
+    };
+    "nvidia-settings" = {
+      name = "Nvidia X";
+      noDisplay = true;
+    };
+    "nixos-manual" = {
+      name = "NixOS Manual";
+      noDisplay = true;
+    };
   };
 
   programs.home-manager.enable = true;
