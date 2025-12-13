@@ -161,10 +161,6 @@
 		"show-special": true,
 		"special-visible-only": true,
 		"format-icons": {
-			"magic": "s",
-			"amper": "a",
-			"fooshan": "f",
-			"diddy": "d",
 			"10": "0"
 		}
 	},
