@@ -69,9 +69,9 @@ case "$USER_NAME" in
     ;;
   byda)
     case "$INDEX" in
-      0) VPN_TEXT="ru" ;;
-      1) VPN_TEXT="visi" ;;
-      2) VPN_TEXT="okolo" ;;
+      0) VPN_TEXT=" ru " ;;
+      1) VPN_TEXT=" visi " ;;
+      2) VPN_TEXT=" okolo " ;;
       *) VPN_TEXT="" ;;
     esac
     ;;

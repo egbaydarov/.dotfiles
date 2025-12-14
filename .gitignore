@@ -14,6 +14,10 @@
 
 
 !.config/
+!.config/foot/
+!.config/foot/*
+!.config/tmux/
+!.config/tmux/*
 !.config/mako/
 !.config/mako/*
 !.config/waybar/
@@ -40,4 +44,5 @@
 !.config/nvim/lua/byda/lazy/*
 !.config/nvim/lua/byda/config/
 !.config/nvim/lua/byda/config/*
+!.tmux.conf
 

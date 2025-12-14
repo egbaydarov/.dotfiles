@@ -6,8 +6,6 @@ local mux = wezterm.mux
 -- temporary for NixOs
 config.front_end = 'OpenGL'
 config.enable_wayland = true
-config.use_ime = false
-config.max_fps = 144
 config.font_size = 14
 config.initial_cols = 120
 config.initial_rows = 28
@@ -34,22 +32,6 @@ config.keys = {
     key = 'w',
     mods = 'CMD|SHIFT',
     action = wezterm.action.CloseCurrentTab { confirm = true },
-  },
-  {
-    key = '%',
-    mods = 'CTRL|SHIFT|ALT',
-    action = wezterm.action.SplitPane {
-      direction = 'Left',
-      command = { args = { 'top' } },
-      size = { Percent = 50 },
-    },
-  },
-  {
-    key = '"',
-    mods = 'CTRL|SHIFT|ALT',
-    action = wezterm.action.SplitVertical {
-      args = { 'top' },
-    },
   },
   {
     key = 'LeftArrow',
@@ -171,13 +153,6 @@ wezterm.on('gui-startup',
       size = 0.9,
       cwd = proj_dir,
     }
---    local editor_pane_aux = editor_pane:split {
---      direction = 'Left',
---      size = 0.5,
---      cwd = proj_dir,
---      args = { "nvim", "." }
---    }
-
 
     if not args.dir then
       local tab, pane, window = mux.spawn_window {
