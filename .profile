@@ -1,4 +1,1 @@
-# in ~/.profile
-if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
-  . "$HOME/.bashrc"
-fi
+/nix/store/wa88014ind36whwwbgwnpphib0wihx6c-home-manager-files/.profile

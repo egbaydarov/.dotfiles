@@ -7,7 +7,23 @@
     enable = true;
   };
   programs.bash.bashrcExtra = ''
+    runbg () {
+      [ -n "$${TMUX:-}" ] || { echo "runbg: not inside tmux" >&2; return 1; }
+      [ $# -gt 0 ] || { echo "usage: runbg <command...>" >&2; return 2; }
+
+      local win=1000
+      local cmd="$*"
+
+      if ! tmux list-windows -F '#{window_index}' | grep -qx "$win"; then
+        tmux new-window -d -t "$win" -n "bg" -c "$PWD"
+      fi
+
+      tmux split-window -t "$${win}" -c "$PWD" "$cmd"
+      tmux select-layout -t "$${win}" tiled
+    }
+
     eval "$(fzf --bash)"
+    alias nd='nix develop'
   '';
   programs.bash.shellAliases = {
     ll = "ls -l";
@@ -58,23 +74,23 @@
   };
 
   programs.home-manager.enable = true;
-  systemd.user.services.twitchalarm = {
-    Unit = {
-      Description = "Twitch Notifier";
-      After = [ "network.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.callPackage ./twitchalarm.nix { }}/bin/twitch-notifs";
-      Restart = "always";
-      RestartSec = "5s";
-      StartLimitIntervalSec = 30;
-      StartLimitBurst = 10;
-      EnvironmentFile = "/etc/twitchalarm.env";
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
+  #systemd.user.services.twitchalarm = {
+  #  Unit = {
+  #    Description = "Twitch Notifier";
+  #    After = [ "network.target" ];
+  #  };
+  #  Service = {
+  #    ExecStart = "${pkgs.callPackage ./twitchalarm.nix { }}/bin/twitch-notifs";
+  #    Restart = "always";
+  #    RestartSec = "5s";
+  #    StartLimitIntervalSec = 30;
+  #    StartLimitBurst = 10;
+  #    EnvironmentFile = "/etc/twitchalarm.env";
+  #  };
+  #  Install = {
+  #    WantedBy = [ "default.target" ];
+  #  };
+  #};
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -92,7 +108,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     pkgs.dbeaver-bin
-    (import ./twitchalarm.nix { inherit pkgs; })
+    #(import ./twitchalarm.nix { inherit pkgs; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
